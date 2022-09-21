@@ -36,7 +36,7 @@ my-eth-app
     │   │   └── robots.txt
     │   └── src
     │       ├── App.css
-    │       ├── App.js
+    │       ├── App.jsx
     │       ├── App.test.js
     │       ├── ethereumLogo.svg
     │       ├── index.css
