@@ -26,20 +26,26 @@
     "@ethersproject/contracts": "^5.6.0",
     "@ethersproject/providers": "^5.6.0",
     "@my-app/contracts": "^1.0.0",
-    "ipfs-deploy": "^11.2.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "@usedapp/core": "^1.1.5",
+    "@radix-ui/react-dialog": "^1.0.0",
     "@uniswap/sdk": "^3.0.2",
     "@uniswap/v2-core": "^1.0.1",
     "@uniswap/v2-periphery": "^1.1.0-beta.0",
+    "@usedapp/core": "^1.1.5",
+    "clsx": "^1.2.1",
     "ethers": "^5.7.0",
+    "ipfs-deploy": "^11.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "web3": "^1.7.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.16",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "tailwindcss": "^3.1.8",
     "vite": "^3.1.0"
   }
 }

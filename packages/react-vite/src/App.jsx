@@ -1,14 +1,16 @@
-import React from "react"
+import React, {lazy, Suspense} from "react"
 import styles from "./styles";
 import {uniswapLogo} from "./assets";
 import {useEthers} from "@usedapp/core";
 import Loader from "./components/Loader";
-import Exchange from "./components/Exchange";
-import WalletButton from "./components/WalletButton";
+import {usePools} from "./hooks/usePools.js";
+
+const Exchange = lazy(() => import("./components/Exchange"));
+const WalletButton = lazy(() => import("./components/WalletButton"));
 
 const App = () => {
     const {account} = useEthers();
-    const poolsLoading = false;
+    const [loading, pools] = usePools();
 
     return (
         <div className={styles.container}>
@@ -31,7 +33,7 @@ const App = () => {
                             <div className="pink_gradient"/>
                             <div className={styles.exchange}>
                                 {account
-                                    ? poolsLoading ? <Loader title="Loading pools, please wait!"/> : <Exchange/>
+                                    ? loading ? <Loader title="Loading pools, please wait!"/> : <Suspense fallback={<Loader title="Loading exchange, please wait!"/>}><Exchange pools={pools}/></Suspense>
                                     : <Loader title="Please connect your wallet"/>
                                 }
                             </div>

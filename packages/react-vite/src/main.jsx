@@ -1,9 +1,9 @@
 import {createRoot} from "react-dom/client";
-import {DAppProvider} from "@usedapp/core";
-import {StrictMode} from "react";
-
+import {lazy, StrictMode} from "react";
 import App from "./App";
 import {DAPP_CONFIG} from "./config";
+
+const DAppProvider = lazy(() => import("@usedapp/core").then(({DAppProvider}) => ({default: DAppProvider})));
 
 import "./index.css";
 
