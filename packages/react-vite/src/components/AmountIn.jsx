@@ -1,7 +1,8 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from "../styles";
 import {chevronDown} from "../assets/index.js";
-import {useOnClickOutside} from "../utils/index.js";
+import CurrencyDialog from "./CurrencyDialog.jsx";
+import clsx from "clsx";
 
 const AmountIn = ({
                       value,
@@ -11,11 +12,8 @@ const AmountIn = ({
                       isSwapping,
                       availableTokens
                   }) => {
-    const [showList, setShowList] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [activeToken, setActiveToken] = useState('Select a token');
-    const tokenListRef = useRef(null);
-
-    useOnClickOutside(tokenListRef, () => setShowList(false));
 
     useEffect(() => {
         if (Object.keys(availableTokens).includes(currencyValue)) {
@@ -30,7 +28,15 @@ const AmountIn = ({
             onSelectedCurrencyChange(token);
         }
         setActiveToken(tokenName);
-        setShowList(false);
+        setShowModal(false);
+    }
+
+    const openModal = () => {
+        setShowModal(true);
+    }
+
+    const closeModal = () => {
+        setShowModal(false);
     }
 
     return (
@@ -43,32 +49,21 @@ const AmountIn = ({
                 onChange={(e) => typeof onChange === 'function' && onChange(e.target.value)}
                 className={styles.amountInput}
             />
-            <div className="relative" onClick={() => setShowList((prevState) => !prevState)}>
-                <button className={styles.currencyButton}>
-                    {activeToken}
-                    <img
-                        src={chevronDown}
-                        alt="chevron"
-                        className={`w-4 h-4 object-contain ml-2 ${showList ? "rotate-180" : "rotate-0"}`}
-                    />
-                </button>
+            <button onClick={openModal} type="button" className={styles.currencyButton}>
+                {activeToken}
+                <img
+                    src={chevronDown}
+                    alt="chevron"
+                    className={clsx('w-4 h-4 object-contain ml-2', showModal ? 'rotate-180' : 'rotate-0')}
+                />
+            </button>
 
-                {showList && (
-                    <ul
-                        ref={tokenListRef}
-                        className={styles.currencyList}
-                    >
-                        {Object.entries(availableTokens).map(([token, tokenName], index) => (
-                            <li
-                                onClick={() => activeTokenHandler(token, tokenName)}
-                                key={index}
-                                className={`${styles.currencyListItem} ${activeToken === tokenName ? 'bg-site-dim2' : ''} cursor-pointer`}>
-                                {tokenName}
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
+            <CurrencyDialog
+                tokenHandler={activeTokenHandler}
+                availableTokens={availableTokens}
+                showModal={showModal}
+                closeModal={closeModal}
+            />
         </div>
     );
 };

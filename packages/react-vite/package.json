@@ -25,8 +25,8 @@
   "dependencies": {
     "@ethersproject/contracts": "^5.6.0",
     "@ethersproject/providers": "^5.6.0",
+    "@headlessui/react": "^1.7.2",
     "@my-app/contracts": "^1.0.0",
-    "@radix-ui/react-dialog": "^1.0.0",
     "@uniswap/sdk": "^3.0.2",
     "@uniswap/v2-core": "^1.0.1",
     "@uniswap/v2-periphery": "^1.1.0-beta.0",
