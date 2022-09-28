@@ -52,8 +52,8 @@ const AmountOut = ({
                 value={formatUnits(amountOut)}
                 className={styles.amountInput}
             />
-                <button onClick={openModal} type="button" className={styles.currencyButton}>
-                    {activeToken}
+                <button onClick={openModal} type="button" className={clsx(styles.currencyButton, 'max-w-[100px] xs:max-w-full')}>
+                    <span className="text-ellipsis whitespace-nowrap overflow-hidden">{activeToken}</span>
                     <img
                         src={chevronDown}
                         alt="chevron"
